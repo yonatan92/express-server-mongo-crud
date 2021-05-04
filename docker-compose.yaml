@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  mysqldb:
+    image: mysql:8.0.24
+    container_name: mysql-db
+    volumes:
+      - './mysql-data/db:/var/lib/mysql'
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: mysecret
+      MYSQL_DATABASE: playground

@@ -1,0 +1,20 @@
+{
+  "name": "express-mysql-crud",
+  "version": "1.0.0",
+  "description": "Simple Express App",
+  "main": "app.mjs",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config app.mjs",
+    "start": "nodemon -r dotenv/config app.mjs"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@ajar/marker": "^1.2.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
