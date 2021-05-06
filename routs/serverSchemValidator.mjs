@@ -5,6 +5,7 @@ export const postSchema = Joi.object({
   email: Joi.string().email({ minDomainSegments: 2 }).required(),
   phone: Joi.string().length(10).regex(/^\d+$/).required(),
   country: Joi.string().alphanum().min(2).required(),
+  password: Joi.string().min(3).max(15).required(),
 });
 
 export const putSchema = Joi.object({
@@ -20,6 +21,7 @@ export const patchSchema = Joi.object({
   last_name: Joi.string().alphanum().min(2).max(30),
   email: Joi.string().email({ minDomainSegments: 2 }),
   phone: Joi.string().length(10).regex(/^\d+$/),
+  country: Joi.string().alphanum().min(2),
 });
 
 export const postManyhSchema = Joi.array().items(postSchema);

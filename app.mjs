@@ -1,6 +1,6 @@
 import express from 'express';
 import log from '@ajar/marker';
-// import auth_router from './routs/auth.router.mjs';
+import auth_router from './routs/auth.router.mjs';
 
 import {
   error_handler,
@@ -23,6 +23,7 @@ app.use(express.json());
 //routing
 // app.use('/api', apiRouter);
 app.use('/users', usersRouter);
+app.use('/api/auth', auth_router);
 // central error handling
 app.use(error_handler);
 app.use(error_handler2);

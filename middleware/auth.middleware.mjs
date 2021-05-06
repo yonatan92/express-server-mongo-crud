@@ -30,7 +30,7 @@ export const verify_token = async (req, res, next) => {
 
     // verifies secret and checks exp
     const decoded = await jwt.verify(token, APP_SECRET);
-
+    console.log({ decoded });
     // if everything is good, save to request for use in other routes
     req.user_id = decoded.id;
     next();

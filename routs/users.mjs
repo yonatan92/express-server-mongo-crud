@@ -1,37 +1,18 @@
 import express, { json } from 'express';
-import { access } from 'fs';
-import fs from 'fs/promises';
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
+// import { access } from 'fs';
+// import fs from 'fs/promises';
+// import path, { dirname } from 'path';
+// import { fileURLToPath } from 'url';
 import sqlConnection from '../db/mysql.connection.mjs';
 import raw from '../middleware/route.async.wrapper.mjs';
 import { postSchema, putSchema } from './serverSchemValidator.mjs';
-import {
-  getAllUsers,
-  deleteUserById,
-  getUserById,
-  createNewUser,
-} from './routesUtils.mjs';
 const { DB_TABLE_NAME } = process.env;
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const dbPath = path.resolve(__dirname, '../dbMock/users.json');
+// const __dirname = dirname(fileURLToPath(import.meta.url));
+// const dbPath = path.resolve(__dirname, '../dbMock/users.json');
 // import usersRouter from './users.mjs';
 
 const router = express.Router();
-
-const usersDbMiddlware = async (req, res, next) => {
-  try {
-    const exist = await fs.access(dbPath);
-  } catch (e) {
-    await fs.writeFile(dbPath, JSON.stringify([]));
-  } finally {
-    req.users = await getAllUsers();
-    next();
-  }
-};
-
-// router.use(usersDbMiddlware);
 
 router.get('/test', async (req, res, next) => {
   const user = await sqlConnection.query(
@@ -67,7 +48,6 @@ router.get(
 router.post(
   '/create',
   raw(async (req, res, next) => {
-    const { user_name } = req.body;
     await postSchema.validateAsync(req.body);
     const { phone, first_name, last_name, email, country } = req.body;
     const user = await sqlConnection.query(
